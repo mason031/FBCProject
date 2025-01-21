@@ -1,0 +1,95 @@
+<apex:page controller="ContactController" >
+    <!-- Begin Default Content REMOVE THIS -->
+    <apex:pageBlock>
+        <apex:sectionHeader title = "Contact"/>
+        <apex:form>
+        <apex:pageBlockSection title = "Navigate To" columns = "1">
+            
+                <pageBlockSectionItem>
+                    <apex:commandLink value = "Work Orders" action = "{!WorkOrderPage}"/>
+                </pageBlockSectionItem>
+                <pageBlockSectionItem>
+                    <apex:commandLink value = "Opportunities" action = "{!OpportunityPage}"/>
+                </pageBlockSectionItem>
+                <pageBlockSectionItem>
+                    <apex:commandLink value = "Accounts and Leads" action = "{!AccountsAndLeadsPage}"/>
+                </pageBlockSectionItem>
+                <pageBlockSectionItem>
+                    <apex:commandLink value = "Contacts" action = "{!ContactsPage}"/>
+                </pageBlockSectionItem>
+                <pageBlockSectionItem>
+                    <apex:commandLink value = "Orders" action = "{!OrderPage}"/>
+                </pageBlockSectionItem>
+                <pageBlockSectionItem>
+                    <apex:commandLink value = "External Links" action = "{!LinksPage}"/>
+                </pageBlockSectionItem>
+        </apex:pageBlockSection>
+    </apex:form>
+
+        <apex:form>
+            <apex:pageBlockSection Title="Create a new contact: ">
+                <apex:inputField value="{!newContact.FirstName}" />
+                <apex:inputField value="{!newContact.LastName}" />
+                <apex:inputField value="{!newContact.Phone}" />
+                <apex:inputField value="{!newContact.Email}" />
+                <apex:selectList value= "{!recordType}" size = "1">
+                    <apex:selectOption itemValue = "Customer"/>
+                    <apex:selectOption itemValue = "Service Technician" rendered = "{!isVisible}"/>
+                </apex:selectList>
+                <br/>
+                <apex:commandButton value="Save" action="{!saveRecord}" reRender="CustomerList, TechList, messages" />
+            </apex:pageBlockSection>
+        </apex:form>
+        
+        <apex:form>
+            <apex:pageMessages id="messages" />
+            <apex:pageBlockSection Title = "Customer Contacts" columns = "1">
+            <apex:pageBlockTable value="{!customerContacts}" var="cCon" id="CustomerList">
+                <apex:column title="Customer Name">
+                    <apex:outputLink value="/{!cCon.Id}">
+                        {!cCon.FirstName} {!cCon.LastName}
+                    </apex:outputLink>
+                </apex:column>
+                <apex:column>
+                    <apex:pageBlockSection>
+                        <apex:outputField value="{!cCon.Title}" />
+                        <apex:outputField value="{!cCon.Phone}" />
+                        <apex:outputField value="{!cCon.Email}" />
+                    </apex:pageBlockSection>
+                </apex:column>
+                <apex:column>
+                    <apex:commandLink value="Delete Record" action="{!deleteRecord}" reRender="CustomerList, messages">
+                        <apex:param value="{!cCon.Id}" assignTo="{!contactId}" name="contactId" />
+                    </apex:commandLink>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlockSection>
+        </apex:form>
+
+        <apex:form>
+            <apex:pageMessages id="messages" />
+            <apex:pageBlockSection Title = "Service Technicians" columns = "1" rendered = "{!isVisible}">
+            <apex:pageBlockTable value="{!techContacts}" var="tCon" id="TechList">
+                <apex:column title="Service Tech Name">
+                    <apex:outputLink value="/{!tCon.Id}">
+                        {!tCon.FirstName} {!tCon.LastName}
+                    </apex:outputLink>
+                </apex:column>
+                <apex:column>
+                    <apex:pageBlockSection>
+                        <apex:outputField value="{!tCon.Title}" />
+                        <apex:outputField value="{!tCon.Phone}" />
+                        <apex:outputField value="{!tCon.Email}" />
+                    </apex:pageBlockSection>
+                </apex:column>
+                <apex:column>
+                    <apex:commandLink value="Delete Record" action="{!deleteRecord}" reRender="TechList, messages">
+                        <apex:param value="{!tCon.Id}" assignTo="{!contactId}" name="contactId" />
+                    </apex:commandLink>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlockSection>
+        </apex:form>
+    </apex:pageBlock>
+    <!-- End Default Content REMOVE THIS -->
+</apex:page>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ContactValidation</fullName>
+    <active>true</active>
+    <description>Contact must be a service technician</description>
+    <errorConditionFormula>Contact.RecordType.Name &lt;&gt; &quot;Service Technician&quot; &amp;&amp; !ISBLANK(ContactId)</errorConditionFormula>
+    <errorDisplayField>ContactId</errorDisplayField>
+    <errorMessage>The associated contact must be a service technician</errorMessage>
+</ValidationRule>

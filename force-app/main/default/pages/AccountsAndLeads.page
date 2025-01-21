@@ -1,0 +1,111 @@
+<apex:page controller="AccountsAndLeadsController" >
+    <!-- Begin Default Content REMOVE THIS -->
+    <apex:pageBlock>
+        <apex:sectionHeader title = "Accounts and Leads"/>
+        <apex:form>
+        <apex:pageBlockSection title = "Navigate To" columns = "1">
+            
+                <pageBlockSectionItem>
+                    <apex:commandLink value = "Work Orders" action = "{!WorkOrderPage}"/>
+                </pageBlockSectionItem>
+                <pageBlockSectionItem>
+                    <apex:commandLink value = "Opportunities" action = "{!OpportunityPage}"/>
+                </pageBlockSectionItem>
+                <pageBlockSectionItem>
+                    <apex:commandLink value = "Accounts and Leads" action = "{!AccountsAndLeadsPage}"/>
+                </pageBlockSectionItem>
+                <pageBlockSectionItem>
+                    <apex:commandLink value = "Contacts" action = "{!ContactsPage}"/>
+                </pageBlockSectionItem>
+                <pageBlockSectionItem>
+                    <apex:commandLink value = "Orders" action = "{!OrderPage}"/>
+                </pageBlockSectionItem>
+                <pageBlockSectionItem>
+                    <apex:commandLink value = "External Links" action = "{!LinksPage}"/>
+                </pageBlockSectionItem>
+        </apex:pageBlockSection>
+    </apex:form>
+
+        <apex:form>
+            <apex:pageBlockSection Title="Create a new Account: ">
+                <apex:inputField value="{!newAcc.Name}" />
+                <apex:inputField value="{!newAcc.Industry}" />
+                <apex:inputField value="{!newAcc.Rating}" />
+                <apex:inputField value="{!newAcc.Phone}" />
+                <apex:inputField value="{!newAcc.Type}" />
+                <br/>
+                <apex:commandButton value="Save" action="{!saveAccount}" reRender="List, messages" />
+            </apex:pageBlockSection>
+        </apex:form>
+
+        <apex:form>
+            <apex:pageBlockSection Title="Create a new Lead: ">
+                <apex:inputField value="{!newLead.FirstName}" />
+                <apex:inputField value="{!newLead.LastName}" />
+                <apex:inputField value="{!newLead.Company}" />
+                <apex:inputField value="{!newLead.Status}" />
+                <apex:inputField value="{!newLead.Phone}" />
+                <apex:inputField value="{!newLead.LeadSource}" />
+                <br/>
+                <apex:commandButton value="Save" action="{!saveLead}" reRender="List, messages" />
+            </apex:pageBlockSection>
+        </apex:form>
+        
+        <apex:form>
+            <apex:pageMessages id="messages" />
+            <apex:pageBlockSection Title = "Accounts" columns = "1">
+            <apex:pageBlockTable value="{!accs}" var="acc" id="List">
+                <apex:column title="Account Name">
+                    <apex:outputLink value="/{!acc.Id}">
+                        {!acc.Name}
+                    </apex:outputLink>
+                </apex:column>
+                <apex:column>
+                    <apex:pageBlockSection>
+                        <apex:outputField value="{!acc.Industry}" />
+                        <apex:outputField value="{!acc.AnnualRevenue}" />
+                        <apex:outputField value="{!acc.Rating}" />
+                        <apex:outputField value="{!acc.Phone}" />
+                        <apex:outputField value="{!acc.Website}" />
+                    </apex:pageBlockSection>
+                </apex:column>
+                <apex:column>
+                    <apex:commandLink value="Delete Record" action="{!deleteRecord}" reRender="List, messages">
+                        <apex:param value="{!acc.Id}" assignTo="{!deleteId}" name="deleteId" />
+                    </apex:commandLink>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlockSection>
+        </apex:form>
+
+        <apex:form>
+           
+            <apex:pageBlockSection Title = "Leads" columns = "1">
+            <apex:pageBlockTable value="{!leads}" var="lead" id="LeadList">
+                <apex:column title="Lead Name">
+                    <apex:outputLink value="/{!lead.Id}">
+                        {!lead.FirstName} {!lead.LastName}
+                    </apex:outputLink>
+                </apex:column>
+                <apex:column>
+                    <apex:pageBlockSection>
+                        <apex:outputField value="{!lead.Company}" />
+                        <apex:outputField value="{!lead.Title}" />
+                        <apex:outputField value="{!lead.Phone}" />
+                        <apex:outputField value="{!lead.Email}" />
+                        <apex:outputField value="{!lead.LeadSource}" />
+                        <apex:outputField value="{!lead.Status}" />
+                    </apex:pageBlockSection>
+                </apex:column>
+                <apex:column>
+                    <apex:commandLink value="Delete Record" action="{!deleteRecord}" reRender="LeadList, messages">
+                        <apex:param value="{!lead.Id}" assignTo="{!deleteId}" name="deleteId" />
+                    </apex:commandLink>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlockSection>
+        </apex:form>
+
+    </apex:pageBlock>
+    <!-- End Default Content REMOVE THIS -->
+</apex:page>

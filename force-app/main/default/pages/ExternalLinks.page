@@ -1,0 +1,68 @@
+<apex:page controller="ExternalLinksController" >
+    <!-- Begin Default Content REMOVE THIS -->
+    <apex:pageBlock>
+        <apex:sectionHeader title = "ExternalLinks"/>
+        <apex:form>
+        <apex:pageBlockSection title = "Navigate To" columns = "1">
+            
+                <pageBlockSectionItem>
+                    <apex:commandLink value = "Work Orders" action = "{!WorkOrderPage}"/>
+                </pageBlockSectionItem>
+                <pageBlockSectionItem>
+                    <apex:commandLink value = "Opportunities" action = "{!OpportunityPage}"/>
+                </pageBlockSectionItem>
+                <pageBlockSectionItem>
+                    <apex:commandLink value = "Accounts and Leads" action = "{!AccountsAndLeadsPage}"/>
+                </pageBlockSectionItem>
+                <pageBlockSectionItem>
+                    <apex:commandLink value = "Contacts" action = "{!ContactsPage}"/>
+                </pageBlockSectionItem>
+                <pageBlockSectionItem>
+                    <apex:commandLink value = "Orders" action = "{!OrderPage}"/>
+                </pageBlockSectionItem>
+                <pageBlockSectionItem>
+                    <apex:commandLink value = "External Links" action = "{!LinksPage}"/>
+                </pageBlockSectionItem>
+        </apex:pageBlockSection>
+    </apex:form>
+    
+        <apex:form>
+            <apex:pageBlockSection Title="Create a new link: ">
+                <apex:inputField value="{!newLink.Name}" />
+                <apex:inputField value="{!newLink.WebsiteLink__c}" />
+                <apex:inputField value="{!newLink.Description__c}" />
+                <br/>
+                <apex:commandButton value="Save" action="{!saveRecord}" reRender="List, messages" />
+            </apex:pageBlockSection>
+        </apex:form>
+
+        <apex:form>
+            <apex:pageMessages id="messages" />
+            <apex:pageBlockSection Title = "External Links" columns = "1">
+            <apex:pageBlockTable value="{!links}" var="link" id="List">
+                <apex:column>
+                    <iframe src = "{!link.WebsiteLink__c}"/>
+                       
+
+                </apex:column>
+                <apex:column>
+                    <apex:outputLink value = "{!link.WebsiteLink__c}">
+                        GO TO {!link.Name}
+                    </apex:outputLink>
+                </apex:column>
+                <apex:column>
+                    <apex:outputField value = "{!link.Description__c}"/>
+                </apex:column>
+                <!--
+                <apex:column>
+                    <apex:commandLink value="Delete Record" action="{!deleteRecord}" reRender="List, messages">
+                        <apex:param value="{!opp.Id}" assignTo="{!oppId}" name="oppId" />
+                    </apex:commandLink>
+                </apex:column>
+            -->
+            </apex:pageBlockTable>
+        </apex:pageBlockSection>
+        </apex:form>
+    </apex:pageBlock>
+    <!-- End Default Content REMOVE THIS -->
+</apex:page>

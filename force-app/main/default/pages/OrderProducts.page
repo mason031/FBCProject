@@ -1,0 +1,58 @@
+<apex:page controller="OrderController" >
+    <!-- Begin Default Content REMOVE THIS -->
+    <apex:pageBlock >
+        <apex:sectionHeader title="Order Product"/>
+        <apex:form >
+        <apex:pageBlockSection title="Navigate To" columns="1">
+                <pageBlockSectionItem>
+                    <apex:commandLink value="Orders" action="{!OrderPage}"/>
+                </pageBlockSectionItem>
+        </apex:pageBlockSection>
+    </apex:form>
+
+        <apex:form >
+            <apex:pageBlockSection Title="Create a new order product: ">
+                <apex:selectList value="{!newOrderProduct.PricebookEntryId}">
+                    <apex:selectOptions value="{!options}"/>
+                </apex:selectList>
+                <apex:inputField value="{!newOrderProduct.Quantity}" />
+                <apex:inputField value="{!newOrderProduct.UnitPrice}" />
+                <br/>
+                <apex:commandButton value="Save" action="{!saveOrderProduct}" reRender="List, messages" />
+            </apex:pageBlockSection>
+        </apex:form>
+        
+        
+            <apex:pageMessages id="messages" />
+            <apex:pageBlockSection Title="Order Product" columns="1">
+            <apex:pageBlockTable value="{!orderProducts}" var="orderProduct" id="List">
+                
+                <apex:column title="Order Product">
+                    <apex:outputLink value="/{!orderProduct.Id}">
+                        {!orderProduct.Product2.Name}
+                    </apex:outputLink>
+                </apex:column>
+                <apex:column >
+                    <apex:pageBlockSection >
+                        <apex:outputField value="{!orderProduct.Product2.Name}" />
+                        <apex:outputField value="{!orderProduct.Quantity}" />
+                        <apex:outputField value="{!orderProduct.TotalPrice}" />
+                        <apex:outputField value="{!orderProduct.ServiceDate}" />
+                    </apex:pageBlockSection>
+                </apex:column>
+                
+                <apex:column >
+                    <apex:form >
+                    <apex:commandLink value="Delete Record" action="{!deleteOrderProductRecord}" reRender="List, messages">
+                        <apex:param value="{!orderProduct.Id}" assignTo="{!orderProductId}" name="orderProductId" />
+                    </apex:commandLink>
+                </apex:form>
+                
+                </apex:column>
+           
+            </apex:pageBlockTable>
+        </apex:pageBlockSection>
+        
+    </apex:pageBlock>
+    <!-- End Default Content REMOVE THIS -->
+</apex:page>

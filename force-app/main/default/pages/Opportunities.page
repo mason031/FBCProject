@@ -1,0 +1,68 @@
+<apex:page controller="OpportunitiesController" >
+    <!-- Begin Default Content REMOVE THIS -->
+    <apex:pageBlock>
+        <apex:sectionHeader title = "Opportunities"/>
+        <apex:form>
+        <apex:pageBlockSection title = "Navigate To" columns = "1">
+            
+                <pageBlockSectionItem>
+                    <apex:commandLink value = "Work Orders" action = "{!WorkOrderPage}"/>
+                </pageBlockSectionItem>
+                <pageBlockSectionItem>
+                    <apex:commandLink value = "Opportunities" action = "{!OpportunityPage}"/>
+                </pageBlockSectionItem>
+                <pageBlockSectionItem>
+                    <apex:commandLink value = "Accounts and Leads" action = "{!AccountsAndLeadsPage}"/>
+                </pageBlockSectionItem>
+                <pageBlockSectionItem>
+                    <apex:commandLink value = "Contacts" action = "{!ContactsPage}"/>
+                </pageBlockSectionItem>
+                <pageBlockSectionItem>
+                    <apex:commandLink value = "Orders" action = "{!OrderPage}"/>
+                </pageBlockSectionItem>
+                <pageBlockSectionItem>
+                    <apex:commandLink value = "External Links" action = "{!LinksPage}"/>
+                </pageBlockSectionItem>
+        </apex:pageBlockSection>
+    </apex:form>
+
+        <apex:form>
+            <apex:pageBlockSection Title="Create a new opportunity: ">
+                <apex:inputField value="{!newOpp.Name}" />
+                <apex:inputField value="{!newOpp.CloseDate}" />
+                <apex:inputField value="{!newOpp.StageName}" />
+                <br/>
+                <apex:commandButton value="Save" action="{!saveRecord}" reRender="List, messages" />
+            </apex:pageBlockSection>
+        </apex:form>
+        
+        <apex:form>
+            <apex:pageMessages id="messages" />
+            <apex:pageBlockSection Title = "Opportunities" columns = "1">
+            <apex:pageBlockTable value="{!opps}" var="opp" id="List">
+                <apex:column title="Opportunity Name">
+                    <apex:outputLink value="/{!opp.Id}">
+                        {!opp.Name}
+                    </apex:outputLink>
+                </apex:column>
+                <apex:column>
+                    <apex:pageBlockSection>
+                        <apex:outputField value="{!opp.AccountId}" />
+                        <apex:outputField value="{!opp.Amount}" />
+                        <apex:outputField value="{!opp.CloseDate}" />
+                        <apex:outputField value="{!opp.ExpectedRevenue}" />
+                        <apex:outputField value="{!opp.StageName}" />
+                        <apex:outputField value="{!opp.Probability}" />
+                    </apex:pageBlockSection>
+                </apex:column>
+                <apex:column>
+                    <apex:commandLink value="Delete Record" action="{!deleteRecord}" reRender="List, messages">
+                        <apex:param value="{!opp.Id}" assignTo="{!oppId}" name="oppId" />
+                    </apex:commandLink>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlockSection>
+        </apex:form>
+    </apex:pageBlock>
+    <!-- End Default Content REMOVE THIS -->
+</apex:page>
