@@ -12,7 +12,7 @@
     <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
     <label>VisualForceApp</label>
     <navType>Standard</navType>
-    <tabs>OpportunitiesTab</tabs>
+    <tabs>VisualforceTab</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>VisualForceApp_UtilityBar</utilityBar>
 </CustomApplication>

@@ -31,6 +31,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>ExternalLinksController_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>OpportunitiesController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -375,6 +379,16 @@
         <field>ExternalLink__c.Description__c</field>
         <readable>false</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WorkOrder.Account_Revenue__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WorkOrder.Contact_Email__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
     <layoutAssignments>
         <layout>Contact-Contact Layout</layout>
     </layoutAssignments>
@@ -391,6 +405,17 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>ExternalLink__c-ExternalLink Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product2-Office Infrastructure Layout</layout>
+        <recordType>Product2.Office_Infrastructure</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product2-Office Supplies Page Layout</layout>
+        <recordType>Product2.Office_Supplies</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>WorkOrder-Work Order Layout</layout>
     </layoutAssignments>
     <objectPermissions>
         <allowCreate>false</allowCreate>
@@ -448,6 +473,16 @@
         <recordType>Contact.Service_Technician</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product2.Office_Infrastructure</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>Product2.Office_Supplies</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
     <tabVisibilities>
         <tab>Customer_Success__c</tab>
         <visibility>DefaultOn</visibility>
@@ -457,7 +492,7 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>OpportunitiesTab</tab>
+        <tab>VisualforceTab</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
