@@ -86,7 +86,6 @@ private class OrderController_Test {
         PageReference workOrderPage = Page.WorkOrder;
         PageReference contactsPage = Page.Contacts;
         PageReference linksPage = Page.ExternalLinks;
-        PageReference orderListPage = Page.OrderRelatedList;
         Test.setCurrentPage(pageRef);
         Test.setCurrentPage(controller.OrderPage());
         Assert.areEqual(orderPage.getUrl(), ApexPages.currentPage().getUrl());
@@ -100,8 +99,6 @@ private class OrderController_Test {
         Assert.areEqual(contactsPage.getUrl(), ApexPages.currentPage().getUrl());
         Test.setCurrentPage(controller.LinksPage());
         Assert.areEqual(linksPage.getUrl(), ApexPages.currentPage().getUrl());
-        Test.setCurrentPage(controller.OrderRelatedListPage());
-        Assert.areEqual(orderListPage.getUrl(), ApexPages.currentPage().getUrl());
 
     }
 

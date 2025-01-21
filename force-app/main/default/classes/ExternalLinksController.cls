@@ -14,6 +14,7 @@ public with sharing class ExternalLinksController {
     public ExternalLinksController() {
         this.newLink = new ExternalLink__c();
         this.links = [SELECT Name, Description__c, WebsiteLink__c FROM ExternalLink__c];
+        
         //fetchRecords();
     }
     public void saveRecord(){
@@ -21,6 +22,7 @@ public with sharing class ExternalLinksController {
         try{
             Database.insert(newLink);
             fetchRecords();
+            this.newLink = new ExternalLink__c();
         }
         catch(Exception e){
             ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, e.getMessage());

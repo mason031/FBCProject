@@ -16,4 +16,5 @@
     <tabs>Customer_Success__c</tabs>
     <tabs>standard-WorkOrder</tabs>
     <tabs>OpportunitiesTab</tabs>
+    <tabs>ExternalLink__c</tabs>
 </CustomApplication>

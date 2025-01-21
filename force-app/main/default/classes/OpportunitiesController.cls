@@ -14,6 +14,7 @@ public with sharing class OpportunitiesController {
     public OpportunitiesController(){       
         this.newOpp = new Opportunity();      
         fetchRecords();
+        
     }
   
     public void saveRecord(){
@@ -21,6 +22,8 @@ public with sharing class OpportunitiesController {
         try{
             Database.insert(newOpp);
             fetchRecords();
+            this.newOpp = new Opportunity();
+            
         }
         catch(Exception e){
             ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, e.getMessage());

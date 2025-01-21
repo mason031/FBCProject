@@ -18,6 +18,7 @@ public with sharing class WorkOrderController {
             try{
                 Database.insert(newWorkOrder);
                 fetchRecords();
+                this.newWorkOrder = new WorkOrder();
             }
             catch(Exception e){
                 ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, e.getMessage());

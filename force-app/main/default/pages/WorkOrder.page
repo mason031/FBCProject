@@ -1,8 +1,8 @@
 <apex:page controller="WorkOrderController">
     <!-- Begin Default Content REMOVE THIS -->
-    <apex:pageBlock>
-        <apex:sectionHeader title="Opportunities" />
-        <apex:form>
+    <apex:pageBlock >
+        <apex:sectionHeader title="Work Orders" />
+        <apex:form >
             <apex:pageBlockSection title="Navigate To" columns="1">
 
                 <pageBlockSectionItem>
@@ -12,21 +12,21 @@
                     <apex:commandLink value="Opportunities" action="{!OpportunityPage}" />
                 </pageBlockSectionItem>
                 <pageBlockSectionItem>
-                    <apex:commandLink value = "Accounts and Leads" action = "{!AccountsAndLeadsPage}"/>
+                    <apex:commandLink value="Accounts and Leads" action="{!AccountsAndLeadsPage}"/>
                 </pageBlockSectionItem>
                 <pageBlockSectionItem>
-                    <apex:commandLink value = "Contacts" action = "{!ContactsPage}"/>
+                    <apex:commandLink value="Contacts" action="{!ContactsPage}"/>
                 </pageBlockSectionItem>
                 <pageBlockSectionItem>
-                    <apex:commandLink value = "Order" action = "{!OrderPage}"/>
+                    <apex:commandLink value="Order" action="{!OrderPage}"/>
                 </pageBlockSectionItem>
                 <pageBlockSectionItem>
-                    <apex:commandLink value = "External Links" action = "{!LinksPage}"/>
+                    <apex:commandLink value="External Links" action="{!LinksPage}"/>
                 </pageBlockSectionItem>
             </apex:pageBlockSection>
         </apex:form>
 
-        <apex:form>
+        <apex:form >
             <apex:pageBlockSection Title="Create a new Work Order: ">
                 <apex:inputField value="{!newWorkOrder.Subject}" />
                 <apex:inputField value="{!newWorkOrder.Status}" />
@@ -35,7 +35,7 @@
                 <apex:commandButton value="Save" action="{!saveRecord}" reRender="List, messages" />
             </apex:pageBlockSection>
         </apex:form>
-        <apex:form>
+        <apex:form >
             <apex:pageMessages id="messages" />
             <apex:pageBlockSection Title="Work Orders" columns="1">
                 <apex:pageBlockTable value="{!wOrders}" var="wo" id="List">
@@ -44,8 +44,8 @@
                             {!wo.WorkOrderNumber}
                         </apex:outputLink>
                     </apex:column>
-                    <apex:column>
-                        <apex:pageBlockSection>
+                    <apex:column >
+                        <apex:pageBlockSection >
                             <apex:outputField value="{!wo.WorkOrderNumber}" />
                             <apex:outputField value="{!wo.Subject}" />
                             <apex:outputField value="{!wo.ContactId}" />
@@ -54,7 +54,7 @@
                             <apex:outputField value="{!wo.Priority}" />
                         </apex:pageBlockSection>
                     </apex:column>
-                    <apex:column>
+                    <apex:column >
                         <apex:commandLink value="Delete Record" action="{!deleteRecord}" reRender="List, messages">
                             <apex:param value="{!wo.Id}" assignTo="{!workOrderId}" name="workOrderId" />
                         </apex:commandLink>

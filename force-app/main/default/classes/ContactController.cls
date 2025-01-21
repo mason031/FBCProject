@@ -39,6 +39,7 @@ public with sharing class ContactController {
             newContact.recordTypeId = rt.Id;
             Database.insert(newContact);
             fetchRecords();
+            this.newContact = new Contact();
         }
         catch(Exception e){
             ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, e.getMessage());

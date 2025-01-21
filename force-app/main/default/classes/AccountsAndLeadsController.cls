@@ -1,4 +1,3 @@
-
 public with sharing class AccountsAndLeadsController {
 
     public List<Account> accs {get;set;}
@@ -32,6 +31,7 @@ public with sharing class AccountsAndLeadsController {
         try{
             Database.insert(newAcc);
             fetchAccountRecords();
+            this.newAcc = new Account();
         }
         catch(Exception e){
             ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, e.getMessage());
@@ -42,6 +42,7 @@ public with sharing class AccountsAndLeadsController {
         try{
             Database.insert(newLead);
             fetchLeadRecords();
+            this.newLead = new Lead();
         }
         catch(Exception e){
             ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, e.getMessage());

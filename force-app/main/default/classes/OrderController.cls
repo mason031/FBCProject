@@ -19,7 +19,7 @@ public with sharing class OrderController {
     public OrderController(){       
         this.newOrder = new Order();      
         this.newOrderProduct = new OrderItem();
-        
+        System.debug(this.orders);
         fetchRecords();
     }
   
@@ -29,6 +29,7 @@ public with sharing class OrderController {
             //PricebookEntry = new PricebookEntry(OrderI)
             Database.insert(newOrder);
             fetchRecords();
+            this.newOrder = new Order();
         }
         catch(Exception e){
             ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, e.getMessage());
@@ -42,6 +43,7 @@ public with sharing class OrderController {
         try{
             Database.insert(newOrderProduct);
             this.orderProducts = [SELECT OrderId, Product2Id, Product2.Name, Quantity, TotalPrice, ServiceDate FROM OrderItem WHERE OrderId = :orderId];
+            this.newOrderProduct = new OrderItem(); 
         }
         catch(Exception e){
             ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, e.getMessage());
